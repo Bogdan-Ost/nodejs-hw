@@ -3,7 +3,7 @@ import {
   deleteNote,
   getAllNotes,
   getNoteById,
-} from '../controllers/notesControllers.js';
+} from '../controllers/notesController.js';
 import { Router } from 'express';
 
 const router = Router();
