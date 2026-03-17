@@ -1,17 +1,9 @@
-import { Notes } from '../models/note';
+import { getAllNotes, getNoteById } from '../controllers/notesControllers';
+import { Router } from 'express';
 
-export const getAllNotes = async (req, res) => {
-  const notes = await Notes.find();
-  res.status(200).json(notes);
-};
+const router = Router();
 
-export const getNoteById = async (req, res) => {
-  const { noteId } = req.params;
-  const note = await Notes.findById(noteId);
+router.get('/notes', getAllNotes);
+router.get('/notes/:noteId', getNoteById);
 
-  if (!note) {
-    return res.status(404).json({ message: 'Notes not found' });
-  }
-
-  res.status(200).json(note);
-};
+export default router;
