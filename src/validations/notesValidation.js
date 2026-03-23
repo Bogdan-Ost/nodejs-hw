@@ -1,10 +1,22 @@
 import { Joi, Segments } from 'celebrate';
+import { isValidObjectId } from 'mongoose';
 import { TAGS } from '../constans/tags';
+
+const objectIdValidator = (value, helpers) => {
+  return !isValidObjectId(value) ? helpers.message('Invalid id format') : value;
+};
 
 export const getAllNotesSchema = {
   [Segments.QUERY]: Joi.object({
     page: Joi.number().integer().min(1),
+    perPage: Joi.number().integer().min(5).max(20),
     tag: Joi.string().valid(TAGS),
     search: Joi.string(),
+  }),
+};
+
+export const noteIdSchema = {
+  [Segments.PARAMS]: Joi.object({
+    noteId: Joi.string().custom(objectIdValidator).required(),
   }),
 };
