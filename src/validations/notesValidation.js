@@ -11,7 +11,7 @@ export const getAllNotesSchema = {
     page: Joi.number().integer().min(1),
     perPage: Joi.number().integer().min(5).max(20),
     tag: Joi.string().valid(TAGS).optional(),
-    search: Joi.string(),
+    search: Joi.string().trim().allow(''),
   }),
 };
 
