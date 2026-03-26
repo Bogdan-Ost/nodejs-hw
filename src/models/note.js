@@ -18,7 +18,7 @@ const notesSchema = new Schema(
     tag: {
       type: String,
       required: true,
-      enum: [TAGS],
+      enum: TAGS,
       default: 'Todo',
     },
   },
