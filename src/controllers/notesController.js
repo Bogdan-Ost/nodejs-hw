@@ -12,7 +12,7 @@ export const getAllNotes = async (req, res) => {
   if (tag) {
     notesQuery.where('tag').equals(tag);
   }
-  const [totalItems, totalNotes] = await Promise.all([
+  const [totalNotes, notes] = await Promise.all([
     notesQuery.clone().countDocuments(),
     notesQuery
       .skip(skip)
@@ -20,13 +20,14 @@ export const getAllNotes = async (req, res) => {
       .sort(search ? { score: { $meta: 'textScore' } } : { createdAt: -1 }),
   ]);
 
-  const totalPages = Math.ceil(totalItems / perPage);
+  const totalPages = Math.ceil(totalNotes / perPage);
 
   res.status(200).json({
     page,
     perPage,
-    totalPages,
     totalNotes,
+    totalPages,
+    notes,
   });
 };
 
