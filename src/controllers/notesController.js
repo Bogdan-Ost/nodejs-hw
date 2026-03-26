@@ -12,7 +12,7 @@ export const getAllNotes = async (req, res) => {
   if (tag) {
     notesQuery.where('tag').equals(tag);
   }
-  const [totalItems, notes] = await Promise.all([
+  const [totalItems, totalNotes] = await Promise.all([
     notesQuery.clone().countDocuments(),
     notesQuery
       .skip(skip)
@@ -26,7 +26,7 @@ export const getAllNotes = async (req, res) => {
     page,
     perPage,
     totalPages,
-    notes,
+    totalNotes,
   });
 };
 
