@@ -25,7 +25,6 @@ export const getAllNotes = async (req, res) => {
   res.status(200).json({
     page,
     perPage,
-    totalItems,
     totalPages,
     notes,
   });
