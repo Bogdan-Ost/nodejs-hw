@@ -13,3 +13,26 @@ export const createSession = async (userId) => {
     refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });
 };
+
+export const setSessionCookies = (res, session) => {
+  res.cookie('accessToken', session.accessToken, {
+    httpOnly: true,
+    secure: true,
+    semaSite: 'none',
+    maxAge: FIFTEEN_MINUTES,
+  });
+
+  res.cookie('refreshToken', session.refreshToken, {
+    httpOnly: true,
+    secure: true,
+    semaSite: 'none',
+    maxAge: ONE_DAY,
+  });
+
+  res.cookie('sessionId', session._id, {
+    httpOnly: true,
+    secure: true,
+    semaSite: 'none',
+    maxAge: ONE_DAY,
+  });
+};
