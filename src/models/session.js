@@ -8,7 +8,7 @@ const sessionSchema = new Schema(
     accessTokenValidUntil: { type: Date, required: true },
     refreshTokenValidUntil: { type: Date, required: true },
   },
-  { timeseries: true },
+  { timestamps: true },
 );
 
 export const Session = model('Session', sessionSchema);
