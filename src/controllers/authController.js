@@ -111,7 +111,7 @@ export const requestResetEmail = async (req, res) => {
 
   const resetToken = jwt.sign(
     { sub: user._id, email },
-    process.env.JTW_SECRET,
+    process.env.JWT_SECRET,
     { expiresIn: '15m' },
   );
 
@@ -141,7 +141,7 @@ export const requestResetEmail = async (req, res) => {
   }
 
   res.status(200).json({
-    message: 'If this email exists, a reset link has been sent',
+    message: 'Password reset email sent successfully',
   });
 };
 
